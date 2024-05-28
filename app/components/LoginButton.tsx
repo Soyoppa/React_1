@@ -1,16 +1,13 @@
 
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, ToastAndroid } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import CustomButtonProps from '../types/CustomButtonProps';
 
-function LoginButton({ title, style, textStyle }: CustomButtonProps) {
-  const handlePress = () => {
-    ToastAndroid.show('Button Pressed!', ToastAndroid.SHORT);
-  };
 
+function LoginButton({ title, onPress, style, textStyle }: CustomButtonProps) {
   return (
-    <TouchableOpacity style={[styles.button, style]} onPress={handlePress}>
+    <TouchableOpacity style={[styles.button, style]} onPress={onPress}>
       <Text style={[styles.buttonText, textStyle]}>{title}</Text>
     </TouchableOpacity>
   )
@@ -31,7 +28,8 @@ const styles = StyleSheet.create({
     button: {
       backgroundColor:'blue',
       padding:10,
-      borderRadius: 5
+      borderRadius: 5,
+      width:200,
     },
     buttonText: {
       color: 'white',
