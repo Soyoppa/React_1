@@ -2,31 +2,28 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { BuyPromoScreen, HomeScreen, LifeEssentialsScreen, ProfileScreen, RewardsScreen } from './Screens';
 import { Image } from 'react-native';
-
+import {
+  SafeAreaProvider,
+  useSafeAreaInsets,
+} from 'react-native-safe-area-context';
 const Tab = createBottomTabNavigator(
   
 );
 
 function BottomTabNavigator () {
+  const inset = useSafeAreaInsets();
     return (
         <Tab.Navigator 
         screenOptions={{
           headerShown: false,
-        tabBarStyle: {
-          backgroundColor: 'white', // Background color
-          borderRadius: 0, // Rounded corners
-          borderWidth: 0, // Border width
-          borderColor: 'white', // Border color
-          position: 'absolute', // This makes the tab bar float above the scree
-          elevation: 0, // This is for Android, it removes the shadow from the tab bar
-          shadowOpacity: 0, // Remove shadow on iOS
-          bottom: 0, // Position from the bottom of the screen
-          left: 0, // Position from the left of the screen
-          right: 0,
-          paddingTop: 5,
-          borderTopWidth:0,
-          height: 60,
-          paddingBottom:5// Position from the right of the screen
+          tabBarStyle: {
+            backgroundColor: 'white', // Background color
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            borderTopWidth:0,
+            height: '10%',
+            paddingBottom: inset.bottom,
+            
         },
         }}>
           <Tab.Screen
@@ -67,7 +64,15 @@ function BottomTabNavigator () {
               tabBarIcon: ({ size, focused, color }) => {
                 return (
                   <Image
-                    style={{ width: size, height: size }}
+                  style={{
+                    position: 'absolute',
+                    bottom: 0, // space from bottombar
+                    height: 68,
+                    width: 68,
+                    borderRadius: 68,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    }}
                     source={focused ? require('../assets/logo.png') : require('../assets/logo.png')}
                   />
                 );
@@ -105,6 +110,7 @@ function BottomTabNavigator () {
             }}
           />
         </Tab.Navigator>
+
       );
 }
 
